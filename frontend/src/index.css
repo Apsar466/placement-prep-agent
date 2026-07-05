@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Glassmorphism Utilities */
+@layer components {
+  .glass-panel {
+    @apply bg-glass border border-glass-border backdrop-blur-glass rounded-2xl shadow-lg;
+  }
+  .glass-nav {
+    @apply bg-[rgba(5, 8, 22, 0.6)] border border-glass-border backdrop-blur-glass rounded-2xl shadow-xl;
+  }
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  }
+}
+
+/* Custom Scrollbar for the OS */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050816;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+body {
+  overflow-x: hidden;
+}

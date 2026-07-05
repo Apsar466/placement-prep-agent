@@ -1,0 +1,30 @@
+[
+  {
+    "id": "exp_google_01",
+    "company": "Google",
+    "role": "SDE-1",
+    "type": "company_experiences",
+    "content": "Google SDE-1 Interview Experience. Round 1: Online Assessment consisted of 2 DSA questions. 1. Find the shortest path in a weighted graph (Dijkstra's variation). 2. Sliding window problem to find maximum sum subarray of size K. Round 2: Technical Interview focused heavily on Trees and Graphs. The interviewer asked to implement an LRU cache from scratch and then asked about System Design for a URL shortener (focus on hashing and database sharding). Behavioral: Asked about a time I disagreed with a teammate. Used the STAR method."
+  },
+  {
+    "id": "exp_amzn_01",
+    "company": "Amazon",
+    "role": "SDE-1",
+    "type": "company_experiences",
+    "content": "Amazon Interview strictly follows Leadership Principles. Round 1: DSA on Strings and Arrays (Anagrams grouping, Top K frequent elements). Round 2: Behavioral completely focused on 'Customer Obsession' and 'Deliver Results'. They asked for exact metrics in my previous projects. Round 3: Low Level Design (LLD) of a Parking Lot system. Object-oriented design is crucial. They expect clean code with interfaces and design patterns like Factory or Strategy."
+  },
+  {
+    "id": "dsa_graph_01",
+    "company": "General",
+    "role": "SDE",
+    "type": "dsa_knowledge",
+    "content": "Graph Traversal Algorithms: BFS is used for finding the shortest path in an unweighted graph. DFS is used for topological sorting, detecting cycles, and finding connected components. Time complexity for both is O(V + E) where V is vertices and E is edges. Space complexity is O(V) for the visited array and queue/stack."
+  },
+  {
+    "id": "hr_behavioral_01",
+    "company": "General",
+    "role": "SDE",
+    "type": "hr_behavioral",
+    "content": "How to answer 'Tell me about yourself' in a placement interview. Structure: Present -> Past -> Future. Start with your current status (e.g., 'I am a final year CS student at X'). Move to past achievements (key projects, internships, specific tech stack used). End with future alignment (why this specific company and role excites you). Keep it under 90 seconds."
+  }
+]
