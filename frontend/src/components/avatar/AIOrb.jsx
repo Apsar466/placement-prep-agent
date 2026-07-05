@@ -7,9 +7,9 @@ const AIOrb = () => {
   // Dynamic colors based on AI state
   const getColor = () => {
     switch(aiStatus) {
-      case 'thinking': return 'bg-accent-purple shadow-[0_0_40px_rgba(124,58,237,0.6)]';
-      case 'speaking': return 'bg-accent-cyan shadow-[0_0_40px_rgba(6,182,212,0.6)]';
-      default: return 'bg-accent-blue shadow-[0_0_30px_rgba(59,130,246,0.4)]';
+      case 'thinking': return 'bg-accent-purple shadow-[0_0_40px_rgba(5,150,105,0.6)]';
+      case 'speaking': return 'bg-accent-cyan shadow-[0_0_40px_rgba(52,211,153,0.6)]';
+      default: return 'bg-accent-blue shadow-[0_0_30px_rgba(16,185,129,0.4)]';
     }
   };
 

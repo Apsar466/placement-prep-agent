@@ -7,21 +7,21 @@ const BrainMesh = () => {
       {/* Outer Wireframe Sphere */}
       <mesh scale={2.2}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#3B82F6" wireframe transparent opacity={0.3} />
+        <meshBasicMaterial color="#10B981" wireframe transparent opacity={0.3} />
       </mesh>
       
       {/* Inner Distorted Energy Core */}
       <mesh scale={1.5}>
         <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial
-          color="#7C3AED"
+          color="#059669"
           attach="material"
           distort={0.4}
           speed={2}
           roughness={0.2}
           transparent
           opacity={0.8}
-          emissive="#7C3AED"
+          emissive="#059669"
           emissiveIntensity={0.5}
         />
       </mesh>

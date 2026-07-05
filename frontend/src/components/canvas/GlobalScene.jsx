@@ -44,9 +44,9 @@ const GlobalScene = () => {
         <Stars radius={100} depth={50} count={2000} factor={4} saturation={0} fade speed={1} />
 
         {/* Floating Gradient Blobs for depth */}
-        <GradientBlob position={[-4, 2, -5]} color="#7C3AED" speed={1.2} />
-        <GradientBlob position={[4, -2, -3]} color="#3B82F6" speed={1.8} distort={0.3} />
-        <GradientBlob position={[0, 0, -8]} color="#06B6D4" speed={1} distort={0.6} scale={4} />
+        <GradientBlob position={[-4, 2, -5]} color="#059669" speed={1.2} />
+        <GradientBlob position={[4, -2, -3]} color="#10B981" speed={1.8} distort={0.3} />
+        <GradientBlob position={[0, 0, -8]} color="#34D399" speed={1} distort={0.6} scale={4} />
 
         {/* Subtle Ground Grid (Simulated with a simple plane) */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -4, 0]}>

@@ -2,20 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Reset default colors for light mode */
+@layer base {
+  body {
+    @apply bg-void text-slate-800;
+  }
+  
+  /* Force text classes in light mode for general elements */
+  .text-white {
+    color: #1e293b !important; /* Slate 800 */
+  }
+  .text-white\/90 {
+    color: #1e293b !important;
+  }
+  .text-white\/80 {
+    color: #334155 !important; /* Slate 700 */
+  }
+  .text-white\/60 {
+    color: #475569 !important; /* Slate 600 */
+  }
+  .text-white\/50 {
+    color: #64748b !important; /* Slate 500 */
+  }
+  .text-white\/40 {
+    color: #94a3b8 !important; /* Slate 400 */
+  }
+  .text-white\/30 {
+    color: #cbd5e1 !important; /* Slate 300 */
+  }
+  
+  /* Input/Select styling for high contrast in light mode */
+  input, select, textarea {
+    color: #0f172a !important; /* Slate 900 */
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+  }
+  input::placeholder, select::placeholder, textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: #10B981 !important;
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
+  }
+
+  /* Force white text in buttons, filled tags, and badges */
+  button, 
+  button *, 
+  .bg-accent-blue, 
+  .bg-accent-blue *, 
+  .bg-accent-purple, 
+  .bg-accent-purple *,
+  .bg-accent-green, 
+  .bg-accent-green *,
+  .bg-accent-red, 
+  .bg-accent-red *,
+  .glowing-badge,
+  .glowing-badge * {
+    color: #ffffff !important;
+  }
+  
+  /* Retain text color for outline buttons and links */
+  button.border-accent-blue,
+  button.border-accent-blue * {
+    color: #10B981 !important;
+  }
+  button.bg-white\/5,
+  button.bg-white\/5 * {
+    color: #059669 !important;
+  }
+  a, a * {
+    color: inherit;
+  }
+}
+
 /* Global Glassmorphism Utilities */
 @layer components {
   .glass-panel {
-    @apply bg-glass border border-glass-border backdrop-blur-glass rounded-2xl shadow-lg;
+    @apply bg-glass border border-glass-border backdrop-blur-glass rounded-2xl;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
   }
   .glass-nav {
-    background: rgba(5, 8, 22, 0.6);
-    @apply border border-glass-border backdrop-blur-glass rounded-2xl shadow-xl;
+    background: rgba(255, 255, 255, 0.75);
+    @apply border border-glass-border backdrop-blur-glass rounded-2xl;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
   .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
   }
   .glow-purple {
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+    box-shadow: 0 4px 14px rgba(5, 96, 105, 0.3);
   }
 }
 
@@ -24,14 +99,14 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050816;
+  background: #F8FAFC;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(16, 185, 129, 0.2);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(16, 185, 129, 0.4);
 }
 
 body {

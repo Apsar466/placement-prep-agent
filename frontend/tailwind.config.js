@@ -7,15 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        'void': '#030208',
-        'glass': 'rgba(16, 12, 32, 0.55)',
-        'glass-border': 'rgba(157, 78, 221, 0.22)',
-        'accent-blue': '#00d2ff',
-        'accent-purple': '#9d4edd',
-        'accent-cyan': '#00f2fe',
-        'accent-green': '#00f5d4',
-        'accent-orange': '#ff9f1c',
-        'accent-red': '#ff007f',
+        'void': '#F8FAFC',
+        'glass': 'rgba(255, 255, 255, 0.85)',
+        'glass-border': 'rgba(16, 185, 129, 0.15)',
+        'accent-blue': '#10B981',
+        'accent-purple': '#059669',
+        'accent-cyan': '#34D399',
+        'accent-green': '#047857',
+        'accent-orange': '#D97706',
+        'accent-red': '#DC2626',
       },
       fontFamily: {
         'heading': ['Space Grotesk', 'sans-serif'],
