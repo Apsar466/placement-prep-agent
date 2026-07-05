@@ -1,5 +1,5 @@
 import logging
-from database import mongo_client
+import database
 from agents.master_agent import master_agent
 from utils.pdf_extractor import PDFExtractor
 from models.resume import ResumeAnalysisResponse
@@ -32,7 +32,7 @@ class ResumeService:
         )
 
         # 4. Save to MongoDB
-        db = mongo_client.placement_db
+        db = database.mongo_client.placement_db
         await db.resume_reports.insert_one({
             "user_id": user_id,
             **response_data.model_dump()

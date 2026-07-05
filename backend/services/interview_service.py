@@ -1,7 +1,7 @@
 import uuid
 import logging
 from typing import Dict, Any
-from database import mongo_client, chroma_client, embedding_function
+import database
 from agents.adaptive_interview_agent import AdaptiveInterviewAgent
 from rag.retriever import RAGRetriever
 
@@ -12,15 +12,29 @@ _active_sessions: Dict[str, Dict[str, Any]] = {}
 
 class InterviewService:
     def __init__(self):
-        self.agent = AdaptiveInterviewAgent()
-        try:
-            self.dsa_retriever = RAGRetriever(
-                chroma_client.get_collection("dsa_knowledge"), 
-                embedding_function, 
-                n_results=2
-            )
-        except Exception:
-            self.dsa_retriever = None
+        self._agent = None
+        self._dsa_retriever = None
+
+    @property
+    def agent(self) -> AdaptiveInterviewAgent:
+        if not self._agent:
+            self._agent = AdaptiveInterviewAgent()
+        return self._agent
+
+    @property
+    def dsa_retriever(self) -> RAGRetriever:
+        if not self._dsa_retriever:
+            try:
+                if database.chroma_client and database.embedding_function:
+                    self._dsa_retriever = RAGRetriever(
+                        database.chroma_client.get_collection("dsa_knowledge"), 
+                        database.embedding_function, 
+                        n_results=2
+                    )
+            except Exception as e:
+                logger.warning(f"Lazy loading DSA retriever failed (likely db not initialized yet): {e}")
+                self._dsa_retriever = None
+        return self._dsa_retriever
 
     async def start_interview(self, company: str, role: str, interview_type: str) -> dict:
         session_id = str(uuid.uuid4())
@@ -62,13 +76,14 @@ class InterviewService:
             transcript_str = "\n".join([f"{h['role'].upper()}: {h['content']}" for h in state["history"]])
             report = await self.agent.generate_final_report(state["company"], state["role"], transcript_str, state["question_count"])
             
-            db = mongo_client.placement_db
-            await db.interview_history.insert_one({
-                "session_id": session_id,
-                "company": state["company"],
-                "role": state["role"],
-                "final_report": report
-            })
+            if database.mongo_client:
+                db = database.mongo_client.placement_db
+                await db.interview_history.insert_one({
+                    "session_id": session_id,
+                    "company": state["company"],
+                    "role": state["role"],
+                    "final_report": report
+                })
             
             del _active_sessions[session_id]
             return {

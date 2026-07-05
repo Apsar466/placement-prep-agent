@@ -1,5 +1,5 @@
 import logging
-from database import mongo_client
+import database
 from agents.master_agent import master_agent
 from models.roadmap import RoadmapRequest, RoadmapResponse
 
@@ -25,7 +25,7 @@ class RoadmapService:
             weeks=ai_result.get("weeks", [])
         )
 
-        db = mongo_client.placement_db
+        db = database.mongo_client.placement_db
         await db.roadmaps.insert_one({
             "user_id": user_id,
             "target_companies": request.target_companies,

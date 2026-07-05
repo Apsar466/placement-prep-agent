@@ -1,5 +1,5 @@
 import logging
-from database import mongo_client
+import database
 from agents.master_agent import master_agent
 from models.career import SkillAnalysisRequest, SkillGapResponse
 
@@ -25,7 +25,7 @@ class CareerService:
             recommended_resources=ai_result.get("recommended_resources", [])
         )
 
-        db = mongo_client.placement_db
+        db = database.mongo_client.placement_db
         await db.skill_analysis.insert_one({
             "user_id": user_id,
             "target_role": request.target_role,

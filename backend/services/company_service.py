@@ -1,5 +1,5 @@
 import logging
-from database import mongo_client
+import database
 from agents.master_agent import master_agent
 from models.company import CompanyPrepRequest, CompanyPrepResponse
 
@@ -27,12 +27,15 @@ class CompanyPrepService:
             preparation_strategy=ai_result.get("preparation_strategy", "")
         )
 
-        db = mongo_client.placement_db
-        await db.company_preparation.update_one(
-            {"company_name": request.company_name, "role": request.role},
-            {"$set": response_data.model_dump()},
-            upsert=True
-        )
+        if database.mongo_client:
+            db = database.mongo_client.placement_db
+            await db.company_preparation.update_one(
+                {"company_name": request.company_name, "role": request.role},
+                {"$set": response_data.model_dump()},
+                upsert=True
+            )
+            logger.info(f"Company prep cached/saved for {request.company_name}")
+        else:
+            logger.warning("MongoDB client not connected, skipping caching.")
         
-        logger.info(f"Company prep cached/saved for {request.company_name}")
         return response_data
