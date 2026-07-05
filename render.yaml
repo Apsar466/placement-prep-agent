@@ -5,16 +5,18 @@ services:
   - type: web
     name: placement-backend
     runtime: docker
-    dockerfilePath: backend/Dockerfile
-    dockerContext: backend
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     plan: free
     envVars:
       - key: MONGO_URI
-        sync: false # User will set their MongoDB Atlas URI in the Render dashboard
+        sync: false
       - key: GEMINI_API_KEY
-        sync: false # User will set their Gemini API Key in the Render dashboard
+        sync: false
       - key: CHROMA_PERSIST_DIRECTORY
         value: ./chroma_db
+      - key: PORT
+        value: 8000
 
   # ----------------------------------------------------
   # 2. React + Vite Frontend (Static Site)
@@ -22,8 +24,9 @@ services:
   - type: web
     name: placement-frontend
     runtime: static
-    buildCommand: cd frontend && npm install && npm run build
-    publishPath: frontend/dist
+    buildCommand: npm install && npm run build
+    buildDir: frontend
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://placement-backend.onrender.com/api/v1 # Update with your deployed backend URL
+        value: https://placement-backend.onrender.com/api/v1
