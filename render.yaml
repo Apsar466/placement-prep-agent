@@ -19,8 +19,9 @@ services:
   # ----------------------------------------------------
   # 2. React + Vite Frontend (Static Site)
   # ----------------------------------------------------
-  - type: static
+  - type: web
     name: placement-frontend
+    runtime: static
     buildCommand: cd frontend && npm install && npm run build
     publishPath: frontend/dist
     envVars:
