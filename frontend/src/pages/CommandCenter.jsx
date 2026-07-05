@@ -4,6 +4,7 @@ import GradientButton from '../components/ui/GradientButton';
 import GlassCard from '../components/ui/GlassCard';
 import AnimatedCounter from '../components/ui/AnimatedCounter';
 import { FileText, Brain, Mic, Map } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const stats = [
   { label: "Students Prepared", value: 10000, suffix: "+" },
@@ -13,10 +14,10 @@ const stats = [
 ];
 
 const features = [
-  { icon: FileText, title: "Resume Intelligence", desc: "ATS optimization & critique" },
-  { icon: Brain, title: "Career Intelligence", desc: "Skill gap analysis" },
-  { icon: Mic, title: "Interview Intelligence", desc: "Adaptive mock interviews" },
-  { icon: Map, title: "Placement Strategy", desc: "Personalized roadmaps" }
+  { icon: FileText, title: "Resume Intelligence", desc: "ATS optimization & critique", path: "/resume", color: "text-accent-blue" },
+  { icon: Brain, title: "Career Intelligence", desc: "Skill gap analysis", path: "/skills", color: "text-accent-purple" },
+  { icon: Mic, title: "Interview Intelligence", desc: "Adaptive mock interviews", path: "/interview", color: "text-accent-cyan" },
+  { icon: Map, title: "Placement Strategy", desc: "Personalized roadmaps", path: "/roadmap", color: "text-accent-green" }
 ];
 
 const CommandCenter = () => {
@@ -38,8 +39,12 @@ const CommandCenter = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <GradientButton>Start Preparing</GradientButton>
-            <GradientButton variant="outline">Analyze Resume</GradientButton>
+            <Link to="/dashboard">
+              <GradientButton>Start Preparing</GradientButton>
+            </Link>
+            <Link to="/resume">
+              <GradientButton variant="outline">Analyze Resume</GradientButton>
+            </Link>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
@@ -55,11 +60,13 @@ const CommandCenter = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {features.map((feat, i) => (
-              <GlassCard key={i} className="text-left">
-                <feat.icon className="text-accent-purple mb-3" size={24} />
-                <h3 className="text-white font-heading font-semibold mb-1">{feat.title}</h3>
-                <p className="text-white/50 text-sm">{feat.desc}</p>
-              </GlassCard>
+              <Link to={feat.path} key={i} className="block transition duration-300 hover:scale-[1.03]">
+                <GlassCard className="text-left h-full cursor-pointer">
+                  <feat.icon className={`${feat.color} mb-3`} size={24} />
+                  <h3 className="text-white font-heading font-semibold mb-1">{feat.title}</h3>
+                  <p className="text-white/50 text-sm">{feat.desc}</p>
+                </GlassCard>
+              </Link>
             ))}
           </div>
         </div>

@@ -1,6 +1,5 @@
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Torus } from './TorusMesh'; // Extracted mesh logic for clean architecture
 
 const PlacementReadinessRing = ({ score = 0 }) => {
   return (

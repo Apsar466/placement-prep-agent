@@ -46,6 +46,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+import os
+from fastapi.staticfiles import StaticFiles
+
 # Register Routers
 app.include_router(health.router, prefix="/api/v1", tags=["Health"])
 app.include_router(dashboard_router, prefix="/api/v1", tags=["Dashboard"])
@@ -55,6 +58,11 @@ app.include_router(company_router, prefix="/api/v1", tags=["Company"])
 app.include_router(interview_router, prefix="/api/v1", tags=["Interview"])
 app.include_router(roadmap_router, prefix="/api/v1", tags=["Roadmap"])
 
-@app.get("/")
-async def root():
-    return {"message": "Placement Preparation Agent API is running."}
+# Serve Frontend SPA
+frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
+if os.path.exists(frontend_path):
+    app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
+else:
+    @app.get("/")
+    async def root():
+        return {"message": "Placement Preparation Agent API is running. (Frontend not compiled yet)"}

@@ -18,3 +18,6 @@ Thumbs.db
 
 # Root Env
 .env
+
+# Portable Node
+node-portable/
