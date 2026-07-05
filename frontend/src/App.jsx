@@ -23,7 +23,12 @@ import SkillGapAnalyzer from './pages/SkillGapAnalyzer';
 
 const App = () => {
   return (
-    <div className="relative bg-void min-h-screen overflow-x-hidden font-body">
+    <div className="relative bg-void min-h-screen overflow-x-hidden font-body text-white">
+      {/* Dynamic Ambient Glow Orbs */}
+      <div className="absolute top-[-10%] left-[-15%] w-[60vw] h-[60vw] bg-accent-purple/10 rounded-full blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-[10%] right-[-15%] w-[50vw] h-[50vw] bg-accent-blue/10 rounded-full blur-[130px] pointer-events-none z-0" />
+      <div className="absolute top-[40%] right-[10%] w-[35vw] h-[35vw] bg-accent-red/5 rounded-full blur-[150px] pointer-events-none z-0" />
+
       {/* Z-Layer 1: 3D Environment */}
       <Suspense fallback={null}>
         <GlobalScene />
