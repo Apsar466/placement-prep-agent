@@ -58,11 +58,22 @@ app.include_router(company_router, prefix="/api/v1", tags=["Company"])
 app.include_router(interview_router, prefix="/api/v1", tags=["Interview"])
 app.include_router(roadmap_router, prefix="/api/v1", tags=["Roadmap"])
 
-# Serve Frontend SPA
-frontend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist"))
-if os.path.exists(frontend_path):
+# Serve Frontend SPA — check Docker path first, then local dev path
+frontend_candidates = [
+    os.path.join(os.path.dirname(__file__), "frontend", "dist"),          # Docker: /app/frontend/dist
+    os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend", "dist")),  # Local dev
+]
+frontend_path = None
+for candidate in frontend_candidates:
+    if os.path.exists(candidate):
+        frontend_path = candidate
+        break
+
+if frontend_path:
+    logger.info(f"Serving frontend from: {frontend_path}")
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="frontend")
 else:
+    logger.warning(f"Frontend not found. Checked: {frontend_candidates}")
     @app.get("/")
     async def root():
         return {"message": "Placement Preparation Agent API is running. (Frontend not compiled yet)"}
