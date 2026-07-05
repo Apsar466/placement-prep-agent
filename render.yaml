@@ -19,11 +19,10 @@ services:
   # ----------------------------------------------------
   # 2. React + Vite Frontend (Static Site)
   # ----------------------------------------------------
-  - type: web
+  - type: static
     name: placement-frontend
-    runtime: static
     buildCommand: cd frontend && npm install && npm run build
     publishPath: frontend/dist
     envVars:
       - key: VITE_API_BASE_URL
-        value: https://placement-backend.onrender.com/api/v1 # Replace with your actual backend URL once deployed
+        value: https://placement-backend.onrender.com/api/v1 # Update with your deployed backend URL
