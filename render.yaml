@@ -5,7 +5,7 @@ services:
   - type: web
     name: placement-backend
     runtime: docker
-    dockerFilePath: backend/Dockerfile
+    dockerfilePath: backend/Dockerfile
     dockerContext: backend
     plan: free
     envVars:
